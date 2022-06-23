@@ -10,19 +10,22 @@ const gameState = {
 
 classArrayLike = document.getElementsByClassName("gameTile");
 
-const gameTile = Array.from(classArrayLike);
+const gameGrid = Array.from(classArrayLike);
+let turnCounter = 0
+
 
 const gameArea = document.getElementById("gameBoard");
 gameArea.addEventListener("click", function (clickEvent) {
-    let turnCounter = 0
   if (clickEvent.target.matches(".gameTile")) {
-    // we hit a mole!
-    let currentPlayer = "o"
+    let currentPlayer = gameState.players[turnCounter % 2]
     clickEvent.target.classList.toggle(currentPlayer);
-    console.log('here I am')
+
+    turnCounter++
+    console.log(turnCounter)
 }
 });
 
+console.log(gameGrid)
 
 //Code for checking if the game has been won
 
