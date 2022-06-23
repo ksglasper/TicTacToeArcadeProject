@@ -1,0 +1,42 @@
+.x {
+    background-image: url(https://freepngimg.com/thumb/letter/130387-x-letter-free-download-png-hq.png);
+    background-size: 190px;
+    background-repeat: no-repeat;
+}
+
+.o {
+    background-image: url(https://pngimg.com/uploads/letter_o/letter_o_PNG116.png);
+    background-size: 190px;
+    background-repeat: no-repeat;
+
+}
+
+body{
+    background-color: bisque;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+div{
+    display: flex;
+    justify-content: center;
+  
+  
+}
+.gameTile{
+    border: 1px solid black;
+    height: 200px;
+    width: 200px;
+}
+
+#gameBoard{
+    /* background-color: white; */
+    /* border: 2px solid black; */
+    
+  width: 650px;
+  display: flex;
+  flex-wrap: wrap;
+  }
+
+
