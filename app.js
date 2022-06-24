@@ -17,11 +17,21 @@ let turnCounter = 0
 const gameArea = document.getElementById("gameBoard");
 gameArea.addEventListener("click", function (clickEvent) {
   if (clickEvent.target.matches(".gameTile")) {
+    if(clickEvent.target.matches('.x')){
+        return 'this square already has an x'
+    } else if(clickEvent.target.matches('.o')){  
+        return 'this square already has an o'
+    }else{
+
+        
+    
     let currentPlayer = gameState.players[turnCounter % 2]
+    console.log(`you just placed an ${currentPlayer} and the turn counter is ${turnCounter}!`)
     clickEvent.target.classList.toggle(currentPlayer);
 
     turnCounter++
     console.log(turnCounter)
+    }
 }
 });
 
