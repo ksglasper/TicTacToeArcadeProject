@@ -68,6 +68,7 @@ function updateGameBoard(num) {
     // console.log(gameState.board[(Number(rowNumber))][columnNumber])
    checkRowWin(rowNumber)
    checkColumnWin(columnNumber)
+   checkDiagonalWin()
 
   }
 }
@@ -133,24 +134,22 @@ function checkColumnWin(column){
 
   //   boardReset()
   
-  
   }
-// function checkDiagonalWin(row, column){
-//   let currentPlayer = gameState.players[turnCounter % 2];
-//   let rowNumber = Number(row)
-//   let columnNumber = Number(column)
-//   let currentPlayer = gameState.players[turnCounter % 2];
-//   for(i = 0; i < 3; i++){
-//     if(gameState.board[rowNumber][i] !== currentPlayer){
-//         break
-//     } else{
-//         alert( `${currentPlayer} has won! Congratulations!`)
-//         boardReset()
-
-//     }
-//   }
+function checkDiagonalWin(){
+  let currentPlayer = gameState.players[turnCounter % 2];
+  if(gameState.board[0][0] === currentPlayer && gameState.board[1][1] === currentPlayer && gameState.board[2][2] === currentPlayer){
+    endGame(`${currentPlayer} has won! Congratulations!`)
+    turnCounter = 0
+    gameOverClassAdd()
+  }
+  
+  if(gameState.board[2][0] === currentPlayer && gameState.board[1][1] === currentPlayer && gameState.board[0][2] === currentPlayer){
+    endGame(`${currentPlayer} has won! Congratulations!`)
+    turnCounter = 0
+    gameOverClassAdd()
+  }
     
-// }
+}
 
 function boardReset(){
     const allGameTiles = document.getElementsByClassName("gameTile");
@@ -187,7 +186,8 @@ gameSettings.addEventListener("click", function (clickEvent) {
   }
   turnCounter = 0
   gameOverClassRemove()
-
+  endResultTitle.style.visibility = 'hidden'
+ 
 });
 
 // console.log(gameGrid);
