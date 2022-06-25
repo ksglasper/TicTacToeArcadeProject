@@ -13,46 +13,63 @@
 
 body{
     background-color: bisque;
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
 
-/* div{
+h1{
+    text-align: center;
+    font-size: 70px;
+    /* visibility: hidden; */
+    font-family: Roboto;
+    letter-spacing: 3px;
+    color: rgb(134, 123, 63) ;
+    /* background-color: green; */
+
+
+}
+
+
+#mainArea{
     display: flex;
     justify-content: center;
-
-  
-  
-} */
+    /* background-color: green; */
+}
 .gameTile{
     border: 1px solid black;
     height: 200px;
-    width: 200px;
+    width: 32.5%;
+    background-color: green;
 }
 
 #gameBoard{
-  width: 650px;
+  width: 600px;
   display: flex;
+  justify-content: right;
   flex-wrap: wrap;
-  padding: 50px 50px 15px;
+  padding: 5px 50px 15px;
+  background-color: yellow;
   }
 
 #gameSetting{
     display: flex;
     justify-content: center;
-    flex-direction: column;
+    flex-direction: row;
     margin: 15px;
     flex-wrap: wrap;
 }
+
 button{
-    margin: 25px 50px;
+    margin: 2px 30px;
     height: 75px;
     width: 150px;
     font-size: 22px;
     
 }
-
+button:last-of-type{
+    margin-right: 0px;
+}
+button:first-of-type{
+    margin-left: 5px;
+}
 button:hover{
     box-shadow: 20px 20px 50px 10px skyblue inset;
 }
