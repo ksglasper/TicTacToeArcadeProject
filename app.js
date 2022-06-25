@@ -19,7 +19,6 @@ gameArea.addEventListener("click", function (clickEvent) {
   
   if (clickEvent.target.matches(".gameTile")) {
     if(gameMode === 0){
-      gameMode = 3
       gameOverClassAdd()
       alert('Please select a game mode')
     }
@@ -54,21 +53,25 @@ gameSettings.addEventListener("click", function (clickEvent) {
       }
     }
     turnCounter = 0;
-    gameOverClassRemove();
-    endResultTitle.style.visibility = "hidden";
-    gameMode = 0
+    gameOverClassRemoveAndText();
   }
 
   if (clickEvent.target.matches(".vsComputer")){
+    if(gameMode === 1){
+    } else{
+      boardReset()
+      gameOverClassRemoveAndText();
+    }
     gameMode = 1
-    gameOverClassRemove();
-
   }
   
   if (clickEvent.target.matches(".twoPlayer")){
+    if(gameMode === 2){
+    } else{
+      boardReset()
+      gameOverClassRemoveAndText();
+    }
     gameMode = 2
-    gameOverClassRemove();
-
   }
   console.log(gameMode)
 });
@@ -91,15 +94,21 @@ function gameOverClassAdd() {
   }
 }
 
-function gameOverClassRemove() {
+function gameOverClassRemoveAndText() {
   for (i = 0; i < gameGrid.length; i++) {
     gameGrid[i].classList.remove("gameOver");
   }
+    endResultTitle.style.visibility = "hidden";
+    endResultTitle.style.transform = "none";
+    endResultTitle.style.transition = "none";
 }
 
 function endGame(string) {
   endResultTitle.innerHTML = string;
   endResultTitle.style.visibility = "visible";
+  endResultTitle.style.transform = "rotate(360deg)";
+  endResultTitle.style.transition = "width 2s, height 2s, transform 2s";
+
   gameOverClassAdd();
 }
 
@@ -164,18 +173,18 @@ function itsATie() {
 
 
 
-// function boardReset() {
-//   const allGameTiles = document.getElementsByClassName("gameTile");
+function boardReset() {
+  const allGameTiles = document.getElementsByClassName("gameTile");
 
-//   for (i = 0; i < allGameTiles.length; i++) {
-//     allGameTiles[i].classList.remove("o");
-//     allGameTiles[i].classList.remove("x");
-//   }
-//   for (j = 0; j < gameState.board.length; j++) {
-//     for (k = 0; k < gameState.board[j].length; k++) {
-//       gameState.board[j][k] = null;
-//     }
-//   }
+  for (i = 0; i < allGameTiles.length; i++) {
+    allGameTiles[i].classList.remove("o");
+    allGameTiles[i].classList.remove("x");
+  }
+  for (j = 0; j < gameState.board.length; j++) {
+    for (k = 0; k < gameState.board[j].length; k++) {
+      gameState.board[j][k] = null;
+    }
+  }
 
-//   turnCounter = 0;
-// }
+  turnCounter = 0;
+}
