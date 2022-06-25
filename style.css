@@ -12,7 +12,7 @@
 }
 
 .gameOver{
-    
+   visibility: visible; 
 }
 
 body{
