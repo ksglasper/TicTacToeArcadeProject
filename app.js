@@ -7,34 +7,54 @@ const gameState = {
   ],
 };
 const endResultTitle = document.getElementById("endResult");
-function endGame(){
-  endResultTitle.innerHTML = 'Here i am'
+function endGame(string){
+  endResultTitle.innerHTML = string
   endResultTitle.style.visibility = 'visible'
+  gameOverClassAdd()
+  // console.log(gameGrid)
 }
 
-classArrayLike = document.getElementsByClassName("gameTile");
-
-const gameGrid = Array.from(classArrayLike);
+gameGrid = document.getElementsByClassName("gameTile");
+const gameArea = document.getElementById("gameBoard");
+// const gameGrid = Array.from(gameArea);
 let turnCounter = 0;
 
-const gameArea = document.getElementById("gameBoard");
+
 gameArea.addEventListener("mousedown", function (clickEvent) {
   console.log(clickEvent.target)
 
   if (clickEvent.target.matches(".gameTile")) {
-    if (clickEvent.target.matches(".x") || clickEvent.target.matches(".o")) {
+    if (clickEvent.target.matches(".x") || clickEvent.target.matches(".o") || clickEvent.target.matches(".gameOver")) {
     } else {
       let currentPlayer = gameState.players[turnCounter % 2];
 
       clickEvent.target.classList.toggle(currentPlayer,true);
-
+      updateGameBoard(clickEvent.target)
       turnCounter++;
+
+     
       itsATie()
-      endGame()
+      
       
     }
   }
 });
+console.log(gameGrid.length)
+function gameOverClassAdd(){
+  for(i = 0; i < gameGrid.length; i++){
+  gameGrid[i].classList.add('gameOver')
+
+  }
+
+}
+
+function gameOverClassRemove(){
+  for(i = 0; i < gameGrid.length; i++){
+  gameGrid[i].classList.remove('gameOver')
+
+  }
+
+}
 
 function updateGameBoard(num) {
   let currentPlayer = gameState.players[turnCounter % 2];
@@ -53,8 +73,10 @@ function updateGameBoard(num) {
 }
 function itsATie(){
   if(turnCounter === 9){
+    endGame(`It's a tie!`)
   }
   console.log(turnCounter);
+  
 }
 
 function checkRowWin(row){
@@ -76,7 +98,11 @@ function checkRowWin(row){
   }
   console.log(turnCounter);
 
-  alert( `${currentPlayer} has won! Congratulations!`)
+  endGame(`${currentPlayer} has won! Congratulations!`)
+  turnCounter = 0
+  gameOverClassAdd()
+
+
 //   boardReset()
 
 
@@ -100,7 +126,11 @@ function checkColumnWin(column){
     }
     console.log(turnCounter);
 
-    alert( `${currentPlayer} has won! Congratulations!`)
+    endGame(`${currentPlayer} has won! Congratulations!`)
+  turnCounter = 0
+  gameOverClassAdd()
+
+
   //   boardReset()
   
   
@@ -156,6 +186,7 @@ gameSettings.addEventListener("click", function (clickEvent) {
     // console.log(gameState.board);
   }
   turnCounter = 0
+  gameOverClassRemove()
 
 });
 
