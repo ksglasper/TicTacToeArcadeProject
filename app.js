@@ -10,17 +10,17 @@ const endResultTitle = document.getElementById("endResult");
 const gameGrid = document.getElementsByClassName("gameTile");
 const gameArea = document.getElementById("gameBoard");
 const gameSettings = document.getElementById("gameSetting");
-const playerOne = document.getElementById("playerOne");
-const playerTwo = document.getElementById("playerTwo");
 const playerOneNameSpan = document.getElementById("playerOneName");
 const playerTwoNameSpan = document.getElementById("playerTwoName");
-let playerOneName = "";
-let playerTwoName = "";
-
 let turnCounter = 0;
 let gameMode = 0;
-let gameWon = false
+let gameWon = false;
+
 function nameSubmission() {
+  const playerOne = document.getElementById("playerOne");
+  const playerTwo = document.getElementById("playerTwo");
+  let playerOneName = "";
+  let playerTwoName = "";
   if (playerOne.value === "") {
     playerOneName = "Player 1 : Computer";
   } else {
@@ -54,35 +54,32 @@ gameArea.addEventListener("click", function (clickEvent) {
       turnCounter++;
       itsATie();
 
-      if(gameWon){
-      }else if(gameMode === 1 && turnCounter !== 9){
-        endResultTitle.innerHTML = `Computer is making its move...`
-        setTimeout(computerMove, 50)
+      if (gameWon) {
+      } else if (gameMode === 1 && turnCounter !== 9) {
+        endResultTitle.innerHTML = `Computer is making its move...`;
+        setTimeout(computerMove, 50);
       }
-    
     }
   }
 });
 
-function computerMove(){
-  let randomTileSelection = Math.floor(Math.random() * 9)
-  if(!gameWon){
-  while(
-    gameGrid[randomTileSelection].matches(".x") ||
-    gameGrid[randomTileSelection].matches(".o") ||
-    gameGrid[randomTileSelection].matches(".gameOver")
-  ) {
-    randomTileSelection = Math.floor(Math.random() * 9)
-  }  
+function computerMove() {
+  let randomTileSelection = Math.floor(Math.random() * 9);
+  if (!gameWon) {
+    while (
+      gameGrid[randomTileSelection].matches(".x") ||
+      gameGrid[randomTileSelection].matches(".o") ||
+      gameGrid[randomTileSelection].matches(".gameOver")
+    ) {
+      randomTileSelection = Math.floor(Math.random() * 9);
+    }
     let currentPlayer = gameState.players[turnCounter % 2];
 
     gameGrid[randomTileSelection].classList.toggle(currentPlayer);
     endResultTitle.innerHTML = `Your Move!`;
     updateGameBoard(gameGrid[randomTileSelection]);
     turnCounter++;
-
   }
-
 }
 
 gameSettings.addEventListener("click", function (clickEvent) {
@@ -102,13 +99,21 @@ gameSettings.addEventListener("click", function (clickEvent) {
     turnCounter = 0;
     gameOverClassRemoveAndText();
     if (gameMode === 2) {
+      const startingPhrases = [
+        "goes first",
+        "leads the pack",
+        "is up to bat",
+        "show me your moves",
+        "you're up",
+      ];
+      const randomStartPhrase = Math.floor(Math.random() * 5);
       const randomStartingPerson = Math.floor(Math.random() * 2 + 1);
-      endResultTitle.innerHTML = `Player ${randomStartingPerson} goes first!`;
+      endResultTitle.innerHTML = `Player ${randomStartingPerson} ${startingPhrases[randomStartPhrase]}!`;
     }
     if (gameMode === 1) {
       endResultTitle.innerHTML = `Your Move!`;
     }
-    gameWon = false
+    gameWon = false;
   }
 
   if (clickEvent.target.matches(".vsComputer")) {
@@ -122,22 +127,30 @@ gameSettings.addEventListener("click", function (clickEvent) {
       playerTwoNameSpan.innerHTML = "Player 2 : Computer";
     }
     gameMode = 1;
-    gameWon = false
+    gameWon = false;
   }
 
   if (clickEvent.target.matches(".twoPlayer")) {
+    const startingPhrases = [
+      "goes first",
+      "leads the pack",
+      "is up to bat",
+      "show me your moves",
+      "you're up",
+    ];
+    const randomStartPhrase = Math.floor(Math.random() * 5);
     if (gameMode === 2) {
     } else {
       boardReset();
       gameOverClassRemoveAndText();
       const randomStartingPerson = Math.floor(Math.random() * 2 + 1);
-      endResultTitle.innerHTML = `Player ${randomStartingPerson} goes first!`;
+      endResultTitle.innerHTML = `Player ${randomStartingPerson} ${startingPhrases[randomStartPhrase]}!`;
     }
     if (gameMode === 1 && playerTwoNameSpan.innerHTML !== "") {
       playerTwoNameSpan.innerHTML = "Player 2 : Jane Doe";
     }
     gameMode = 2;
-    gameWon = false
+    gameWon = false;
   }
 });
 
@@ -180,7 +193,7 @@ function checkRowWin(row) {
   endGame(`${currentPlayer.toUpperCase()} wins! Congratulations!`);
   turnCounter = 0;
   gameOverClassAdd();
-  gameWon = true
+  gameWon = true;
 }
 
 function checkColumnWin(column) {
@@ -196,8 +209,7 @@ function checkColumnWin(column) {
   endGame(`${currentPlayer.toUpperCase()} wins! Congratulations!`);
   turnCounter = 0;
   gameOverClassAdd();
-  gameWon = true
-
+  gameWon = true;
 }
 
 function checkDiagonalWin() {
@@ -210,9 +222,7 @@ function checkDiagonalWin() {
     endGame(`${currentPlayer.toUpperCase()} wins! Congratulations!`);
     turnCounter = 0;
     gameOverClassAdd();
-    gameWon = true
-
-
+    gameWon = true;
   }
 
   if (
@@ -223,7 +233,7 @@ function checkDiagonalWin() {
     endGame(`${currentPlayer} has won! Congratulations!`);
     turnCounter = 0;
     gameOverClassAdd();
-    gameWon = true
+    gameWon = true;
   }
 }
 
@@ -252,8 +262,4 @@ function boardReset() {
   }
 
   turnCounter = 0;
-}
-
-function testAlert(){
-  alert('test')
 }

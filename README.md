@@ -31,7 +31,7 @@ As an engineering manager I want to see code (HTML, CSS, and JS) that:
 
 
 
-    TIC-TAC-TOE
+TIC-TAC-TOE
 As users playing a two player game we want to:
 
     enter our names and have them displayed
