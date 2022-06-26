@@ -10,8 +10,64 @@ const endResultTitle = document.getElementById("endResult");
 gameGrid = document.getElementsByClassName("gameTile");
 const gameArea = document.getElementById("gameBoard");
 const gameSettings = document.getElementById("gameSetting");
+const playerOne = document.getElementById('playerOne')
+const playerTwo = document.getElementById('playerTwo')
+
+const playerOneNameSpan = document.getElementById('playerOneName')
+const playerTwoNameSpan = document.getElementById('playerTwoName')
+let playerOneName = ''
+let playerTwoName = ''
+
 let turnCounter = 0;
 let gameMode = 0;
+
+
+function nameSubmissionOne(name){
+  let playerName = 'Player 1 : ' + name.charAt(0).toUpperCase() + name.slice(1);
+  playerOneNameSpan.innerHTML = playerName
+  playerOne.style.visibility = 'hidden'
+}
+function nameSubmissionTwo(name){
+  let playerName = 'Player 2 : ' +  name.charAt(0).toUpperCase() + name.slice(1);
+  playerTwoNameSpan.innerHTML = playerName
+  playerTwo.style.visibility = 'hidden'
+}
+
+
+playerOne.addEventListener("keyup", function (letter){
+  if(letter.key === 'Enter'){
+    nameSubmissionOne(playerOneName)
+  }
+  if(letter.key.length === 1){
+    playerOneName += letter.key
+    console.log(playerOneName)  
+  }
+  if(letter.key === 'Backspace'){
+    playerOneName = playerOneName.slice(0, playerOneName.length - 1);
+  console.log(playerOneName)  
+
+
+  }
+
+})
+playerTwo.addEventListener("keyup", function (letter){
+  if(letter.key === 'Enter'){
+    nameSubmissionTwo(playerTwoName)
+  }
+  if(letter.key.length === 1){
+    playerTwoName += letter.key
+    console.log(playerTwoName)  
+  }
+  if(letter.key === 'Backspace'){
+    playerTwoName = playerTwoName.slice(0, playerTwoName.length - 1);
+  console.log(playerTwoName)  
+
+
+  }
+
+})
+
+
 
 
 
@@ -87,6 +143,14 @@ function updateGameBoard(num) {
     checkDiagonalWin();
   }
 }
+
+
+
+
+
+
+
+
 
 function gameOverClassAdd() {
   for (i = 0; i < gameGrid.length; i++) {
