@@ -16,16 +16,16 @@
 }
 
 body{
-    background-color: bisque;
+    background: linear-gradient(to left, #2A2B2A, #5E4955);
 }
 
 h1{
     text-align: center;
     font-size: 70px;
-    font-family: Roboto;
+    font-family: Signika Negative;
     letter-spacing: 3px;
-    color: rgb(134, 123, 63) ;
-    /* background-color: green; */
+    color: #725867 ;
+    text-shadow: 2px 2px 5px white;
 
 }
 #playerArea{
@@ -38,39 +38,73 @@ h1{
     width: 600px;
     height: 25px;
     margin-bottom: 10px;
+    
 }
-.player{
-    border: none;
+.playerNameInput{
+    background: linear-gradient(to left, #2A2B2A, #5E4955, #996888, #C99DA3, #C6DDF0);
+    height: 35px;
+    width: 40%;
+}
+#submitButton{
+    height: 35px;
+    display: flex;
+    align-items: center;
+    margin-top: 5px;
+}
+input{
+    color: #524a4f;
+    font-weight: bold;
+    font-size: 20px;
+    font-family: Kdam Thmor Pro;
+}
+input::placeholder{
+    color: #524a4f;
+    font-weight: bold;
+    font-size: 20px;
+    font-family: Kdam Thmor Pro;
+}
+#submitButton:hover{
+    box-shadow: 20px 20px 50px 1px #866E6E inset;
 }
 
-#inputPlayerArea{
+#resultedPlayerArea{
     display: flex;
     justify-content: center;
+    margin-top: 25px;
+    margin-bottom: 25px;
 }
-#inputPlayerNames{
+#resultedPlayerNames{
     display: flex;
     width: 600px;
     justify-content: space-around;
-    margin-top: 25px;
-    margin-bottom: 25px;
+
+    
 }
 .playerNameText{
     font-size: 25px;
     font-weight: bold;
     font-family: Kdam Thmor Pro;
     letter-spacing: 2px;
-    color: rebeccapurple;
+    color: #996888;
+    text-shadow: 2px 2px 2px black;
+
+    
 }
 #mainArea{
     display: flex;
     justify-content: center;
-    /* background-color: green; */
+    margin-top: 25px;
+
 }
 .gameTile{
     border: 1px solid black;
     height: 200px;
     width: 32.5%;
-    background-color: green;
+    background-color: #C6DDF0;
+    border-radius: 15px;
+}
+.gameTile:hover{
+    box-shadow: 2px 2px 100px 1px black inset;
 }
 
 #gameBoard{
@@ -79,7 +113,6 @@ h1{
   justify-content: right;
   flex-wrap: wrap;
   padding: 5px 50px 15px;
-  background-color: yellow;
   }
 
 #gameSetting{
@@ -95,13 +128,15 @@ button{
     height: 75px;
     width: 150px;
     font-size: 22px;
+    font-family: Kdam Thmor Pro;
+    border: 2px solid black;
     
 }
 button:last-of-type{
     margin-right: 0px;
 }
 button:first-of-type{
-    margin-left: 5px;
+    margin-left: 15px;
 }
 button:hover{
     box-shadow: 20px 20px 50px 10px skyblue inset;

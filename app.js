@@ -12,7 +12,6 @@ const gameArea = document.getElementById("gameBoard");
 const gameSettings = document.getElementById("gameSetting");
 const playerOne = document.getElementById("playerOne");
 const playerTwo = document.getElementById("playerTwo");
-// const playerArea = document.getElementById("playerNames");
 const playerOneNameSpan = document.getElementById("playerOneName");
 const playerTwoNameSpan = document.getElementById("playerTwoName");
 let playerOneName = "";
@@ -21,7 +20,6 @@ let playerTwoName = "";
 let turnCounter = 0;
 let gameMode = 0;
 let gameWon = false
-console.log(gameGrid[0])
 function nameSubmission() {
   if (playerOne.value === "") {
     playerOneName = "Player 1 : Computer";
@@ -55,15 +53,14 @@ gameArea.addEventListener("click", function (clickEvent) {
       updateGameBoard(clickEvent.target);
       turnCounter++;
       itsATie();
-      
+
       if(gameWon){
       }else if(gameMode === 1 && turnCounter !== 9){
         endResultTitle.innerHTML = `Computer is making its move...`
-        setTimeout(computerMove, 1000)
+        setTimeout(computerMove, 50)
       }
     
     }
-    console.log(gameState.board)
   }
 });
 
@@ -76,14 +73,13 @@ function computerMove(){
     gameGrid[randomTileSelection].matches(".gameOver")
   ) {
     randomTileSelection = Math.floor(Math.random() * 9)
-    console.log(randomTileSelection)
   }  
     let currentPlayer = gameState.players[turnCounter % 2];
 
     gameGrid[randomTileSelection].classList.toggle(currentPlayer);
+    endResultTitle.innerHTML = `Your Move!`;
     updateGameBoard(gameGrid[randomTileSelection]);
     turnCounter++;
-    endResultTitle.innerHTML = `Your Move!`;
 
   }
 
@@ -167,18 +163,8 @@ function gameOverClassRemoveAndText() {
   for (i = 0; i < gameGrid.length; i++) {
     gameGrid[i].classList.remove("gameOver");
   }
-  // endResultTitle.style.visibility = "hidden";
   endResultTitle.style.transform = "none";
   endResultTitle.style.transition = "none";
-}
-
-function endGame(string) {
-  endResultTitle.innerHTML = string;
-  endResultTitle.style.visibility = "visible";
-  endResultTitle.style.transform = "rotate(360deg)";
-  endResultTitle.style.transition = "width 2s, height 2s, transform 2s";
-
-  gameOverClassAdd();
 }
 
 function checkRowWin(row) {
@@ -191,7 +177,7 @@ function checkRowWin(row) {
     }
   }
 
-  endGame(`${currentPlayer} has won! Congratulations!`);
+  endGame(`${currentPlayer.toUpperCase()} wins! Congratulations!`);
   turnCounter = 0;
   gameOverClassAdd();
   gameWon = true
@@ -207,7 +193,7 @@ function checkColumnWin(column) {
     }
   }
 
-  endGame(`${currentPlayer} has won! Congratulations!`);
+  endGame(`${currentPlayer.toUpperCase()} wins! Congratulations!`);
   turnCounter = 0;
   gameOverClassAdd();
   gameWon = true
@@ -221,7 +207,7 @@ function checkDiagonalWin() {
     gameState.board[1][1] === currentPlayer &&
     gameState.board[2][2] === currentPlayer
   ) {
-    endGame(`${currentPlayer} has won! Congratulations!`);
+    endGame(`${currentPlayer.toUpperCase()} wins! Congratulations!`);
     turnCounter = 0;
     gameOverClassAdd();
     gameWon = true
@@ -247,6 +233,11 @@ function itsATie() {
   }
 }
 
+function endGame(string) {
+  endResultTitle.innerHTML = string;
+  gameOverClassAdd();
+}
+
 function boardReset() {
   const allGameTiles = document.getElementsByClassName("gameTile");
 
@@ -261,4 +252,8 @@ function boardReset() {
   }
 
   turnCounter = 0;
+}
+
+function testAlert(){
+  alert('test')
 }
