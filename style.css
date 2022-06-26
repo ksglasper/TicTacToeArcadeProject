@@ -36,6 +36,7 @@ h1{
     display: flex;
     justify-content: space-around;
     width: 600px;
+    height: 25px;
     margin-bottom: 10px;
 }
 .player{

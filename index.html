@@ -18,16 +18,15 @@
     <h1 id="endResult">Let's play Tic-Tac-Toe!</h1>
     <div id="playerArea">
       <div id="playerNames">
-        <input type="text" id="playerOne" class="playerNameInput" placeholder="Player One">
-        <!-- <input type="button" id="beforeAfter" value="Submit" onclick="nameSubmission()"> -->
-        <input type="text" id="playerTwo" class="playerNameInput" placeholder="Player Two">
+        <input type="text" id="playerOne" class="playerNameInput" placeholder="Player One" onfocus="this.value=''">
+        <input type="text" id="playerTwo" class="playerNameInput" placeholder="Player Two" onfocus="this.value=''">
+        <input type="button" value="Submit" onclick="nameSubmission()">
   
       </div>
     </div>
     <div id="inputPlayerArea">
       <div id="inputPlayerNames">
         <span class="playerNameText" id="playerOneName"></span>
-        <!-- <input type="button" id="invisible"> -->
         <span class="playerNameText" id="playerTwoName"></span>
 
   

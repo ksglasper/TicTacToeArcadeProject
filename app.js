@@ -12,6 +12,7 @@ const gameArea = document.getElementById("gameBoard");
 const gameSettings = document.getElementById("gameSetting");
 const playerOne = document.getElementById('playerOne')
 const playerTwo = document.getElementById('playerTwo')
+const playerArea = document.getElementById('playerNames')
 
 const playerOneNameSpan = document.getElementById('playerOneName')
 const playerTwoNameSpan = document.getElementById('playerTwoName')
@@ -21,54 +22,27 @@ let playerTwoName = ''
 let turnCounter = 0;
 let gameMode = 0;
 
+function nameSubmission(){
+  console.log(playerOne.value)
+  console.log(playerOneName)
 
-function nameSubmissionOne(name){
-  let playerName = 'Player 1 : ' + name.charAt(0).toUpperCase() + name.slice(1);
-  playerOneNameSpan.innerHTML = playerName
-  playerOne.style.visibility = 'hidden'
+  if(playerOne.value === ''){
+  playerOneName = 'Player 1 : Computer'
+
+  }else{
+    playerOneName = `Player 1 : ${playerOne.value}`
+
+  }
+  if(playerTwo.value === ''){
+    playerTwoName = 'Player 2 : Computer'
+    }else{
+      playerTwoName = `Player 2 : ${playerTwo.value}`
+    }
+  playerOneNameSpan.innerHTML = playerOneName
+  playerTwoNameSpan.innerHTML = playerTwoName
+  // playerArea.style.visibility = 'hidden'
+  
 }
-function nameSubmissionTwo(name){
-  let playerName = 'Player 2 : ' +  name.charAt(0).toUpperCase() + name.slice(1);
-  playerTwoNameSpan.innerHTML = playerName
-  playerTwo.style.visibility = 'hidden'
-}
-
-
-playerOne.addEventListener("keyup", function (letter){
-  if(letter.key === 'Enter'){
-    nameSubmissionOne(playerOneName)
-  }
-  if(letter.key.length === 1){
-    playerOneName += letter.key
-    console.log(playerOneName)  
-  }
-  if(letter.key === 'Backspace'){
-    playerOneName = playerOneName.slice(0, playerOneName.length - 1);
-  console.log(playerOneName)  
-
-
-  }
-
-})
-playerTwo.addEventListener("keyup", function (letter){
-  if(letter.key === 'Enter'){
-    nameSubmissionTwo(playerTwoName)
-  }
-  if(letter.key.length === 1){
-    playerTwoName += letter.key
-    console.log(playerTwoName)  
-  }
-  if(letter.key === 'Backspace'){
-    playerTwoName = playerTwoName.slice(0, playerTwoName.length - 1);
-  console.log(playerTwoName)  
-
-
-  }
-
-})
-
-
-
 
 
 gameArea.addEventListener("click", function (clickEvent) {
@@ -108,8 +82,14 @@ gameSettings.addEventListener("click", function (clickEvent) {
         gameState.board[j][k] = null;
       }
     }
+    playerOneNameSpan.innerHTML = ''
+    playerTwoNameSpan.innerHTML = ''
+    playerOne.style.visibility = 'visible'
+    playerTwo.style.visibility = 'visible'
+
     turnCounter = 0;
     gameOverClassRemoveAndText();
+
   }
 
   if (clickEvent.target.matches(".vsComputer")){
